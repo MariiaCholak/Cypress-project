@@ -1,0 +1,43 @@
+
+
+There 2 types of locators
+
+CSS and XPath
+
+ - Absolute and Relative XPath
+
+ CSS 
+
+ - By the web element tag
+
+ 	<div id="techglobal" class"" askjdbkqwjbkdwq="sadawdsa"></div>
+ 	<button>
+ 	<a>
+ 	<img>
+ 	<ol>
+ 	<ul>
+ 	<li>
+ 	<input>
+ 	<lable>
+ 	<select>
+ 	<p>
+ 	<h1>
+
+ 	<div id="container">
+ 		<div>
+ 			<div class="cl cont">
+ 				<ol>
+ 					<li></li>
+ 					<li></li>
+ 					<li></li>
+ 				</ol>
+ 			</div>
+ 		</div>
+ 	</div>
+
+ 	- <tag>
+ 	- #id | .className
+ 	- div.cl.cont
+ 	- div  > div.cl.cont
+ 	- #container > div > div.cl.cont
+ 	- #container div.cl.cont  

@@ -1,0 +1,95 @@
+
+
+CSS: 
+
+<button id="login-btn" class="btn primary-btn">Login</button>
+<button class="btn primary-btn">Register</button>
+<button class="btn secondary-btn">Contact Us</button>
+<button class="btn secondary-btn">About Us</button>
+
+
+
+cy.contains('LOGIN')
+cy.get('#login-btn');
+cy.get('.btn'); // returns an array of elements
+cy.get('.primary-btn');
+
+
+
+CSS SYNTAX:
+tagName[attrName='value']
+[attrName='value']
+
+button[id="login-btn"]
+
+
+
+<a href="somelinks" class="about_us_link">About Us</a>
+<a href="somelinks" class="contact_us_link">Contact Us</a>
+<a href="somelinks" class="link_home">Home</a>
+<button class="register_btn">Register</button>
+<button class="login_btn">Login</button>
+
+
+cy.get('a');// 3 link elements
+cy.get('button');// 2 button elements
+
+
+
+CSS startWith, endsWith and contains
+a[class*="link"]; // 3 link elements
+a[class^="link"]; // Home link
+a[class$="link"]; // 2 link elements
+
+
+
+<div id="container"> 
+  <h2 data-testid="container-heading">Get Started</h2>
+  <p data-testid="container-description">Welcome to Cypress World!</p>
+</div>
+
+
+<div id="main-content"> 
+  <h2>Start learning today!</h2>
+  <p>Cypress makes automation easy!</p>
+  <div>
+    <h2>Locators</>
+    <p>Locators are used to identify web elements</>
+    <p>Learn them</>
+  </div>
+</div>
+
+#main-content>h2
+#main-content>p
+
+#main-content>div>h2
+
+#main-content h2 // 2 h2 elements 
+#main-content p // 3 p elements
+
+
+
+Locating Strategies:
+1. If there is ID, use it 
+2. Try CSS locators [attr="value"]
+3. NOT recommended: cy.contains(), pseduo classes
+
+
+What attributes are the most reliable: 
+id, aria-label, for, alt, name, placeholder, data-testid, data-qa, data-cvtest
+
+sometimes class
+
+
+
+Locator vs Selector
+
+
+tagName[attr="value"]
+input[type="check"]
+
+
+
+
+
+<option value="iPhone 14 Pro Max">iPhone 14 Pro Max</option>

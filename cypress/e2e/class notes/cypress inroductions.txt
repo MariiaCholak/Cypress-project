@@ -1,0 +1,114 @@
+
+
+
+What is Cypress?
+	-Cypress is an e2e web automation tool used to automate test cases for an application under test.
+
+	-Cypress supports JS programming language and executed with Node.js.
+
+	-Cypress does not support any other language.
+	-Cypress support cross-browser testing (can run in multiple browsers such as Chrome, Firefox, Edge) but not SAFARI.
+
+	-Cypress handles async code built-in mechanism (implicityly).
+	-Default time is 4 seconds (you can customize it)
+
+	-Cypress has the Test Runner which is useful for tracking and debugging tests.
+
+	npx cypress open -> this command opens Cypress Test Runner
+
+
+Cypress Architecture:
+	Cypress is a bundle of libraries: Mocha, Chai, jQuery, Sinon
+	Mocha: it provides test annotations = describe, it, beforeEach, afterEach
+
+		These helps us organize our tests better and increase reusability with set up and teardown blocks.
+
+	Chai: it provides assertions
+		should()
+		expect()
+
+	jQuery: will help us extract the element and use it a JS object.
+
+Cypress runs in the browser, and interacts with the DOM directly which makes it a lot faster compared to some other automation tools like Selenium WebDriver.
+
+Flake Resistant - Cypress automatically waits for commands and assertions before moving on (default 4 seconds). No more synchronization issues.
+
+Biggest challenge of writing Selenium scripts
+synchronization issues: source code is always faster than the browsers/drivers
+
+Open source - Cypress is an open-source tool, which means that businesses can use it for free and even contribute to its development.
+
+Community support - Cypress has a large and active community of developers who share tips, best practices, and solutions to common issues. This community support makes it easy to get help and learn from other developers.
+
+
+Cypress has a paid-dashboard as well. This provides more features like parallel testing, better report results.
+
+
+Cypress is bundle of libraries: Mocha, Chai, jQuery, Sinon
+
+
+Mocha components in Cypress we frequently use
+describe: used to group together a bundle of tests for the same feature/component
+it: represents each test you have (usually this is also represented as test case)
+
+HOOKS:
+before: executed only once and before everthing else in a spec file (test file)
+after: executed only once and after everything else in a spec file (test file)
+beforeEach: executed for each it block once before the it block
+afterEach: executed for each it block once after the it block
+
+5 tests
+before runs once
+beforeEach runs 5 times
+afterEach runs 5 times
+after runs once
+
+
+Chai: used for assertions
+should(): implement auto-waits (flake-resistant)
+expect(): does not implement auto-waits (not flake-resistant)
+
+
+Can you tell about Cypress Navigation?
+How do you navigate between sites using Cypress?
+
+	-cy.visit(); // to visit a web application
+	-cy.go(direction); // back or forward directions are used to navigate to 					   back and forward. -1 and 1 can also be used.
+	-cy.reload(); // to refresh the page
+
+
+
+TEST CASE: Validate Register Button
+Go to https://www.techglobal-training.com/frontend/html-elements
+Click on "Register" button
+Validate "You clicked on “Register”" is visible
+
+
+
+
+<button class="Button_c_button__TmkRS is-inline undefined" id="register_button" draggable="false">Register</button>
+
+
+TAG: button
+Attributes: class, id, draggable
+Visible Inner Text: Register
+
+
+	- be.visible can be used for all the elements
+	- be.enabled can be used for clickable elements such as buttons, links, checkboxes, radio buttons, dropdowns, input boxes
+
+
+ID Selector: is the most used for all the automation tools
+DO NOT forget '#' in front of id value when using with all the automation tools
+
+
+Class Selector: is another commonly used selector for all automation tools
+DO NOT forget '.' in front of class value when using
+
+<span class="mt-1 is-block">You clicked on “Register”</span>
+
+
+Cypress has 2 commands to find elements (locate elements)
+cy.get(); // can be used with IDs, classes, tag names and many other 				  // attributes or selectors
+
+cy.contains(); // can be used to locate or select an element by it's visible text

@@ -1,0 +1,17 @@
+{
+  "name": "cypress-e2e-b11",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@4tw/cypress-drag-drop": "^2.3.0",
+    "cypress": "^14.3.2",
+    "cypress-real-events": "^1.14.0"
+  }
+}
