@@ -38,6 +38,31 @@ describe('Dropdown select', () => {
     });
   
     it('Validate the result of selections', () => {
+      
+      
+      
+      [
+        {
+          product: "Apple Watch Series 8",
+          color: "Yellow",
+          delivery: "Delivery",
+        },
+        {
+          product: "iPad Pro 11",
+          color: "Green",
+          delivery: "Pick up",
+        },
+        {
+          product: 'MacBook Pro 13',
+          color: 'Silver',
+          delivery: 'Pick up'
+        }
+      ].forEach(({ product, color, delivery }) => {
+        it(`Validate the result of selections for ${color} ${product}`, () => {
+      
+        })
+      
+      
       /*
         Select "iPad Pro 11"
         Select "Green"
@@ -45,24 +70,26 @@ describe('Dropdown select', () => {
         Click on "SUBMIT" button
         Validate "Your Green iPad Pro 11 is ready to be picked up." is visible
       */
-     cy.get('#product_dropdown option:selected').should('contain.text', 'Select');
-cy.get('#product_dropdown').select('iPad Pro 11')
-cy.get('#product_dropdown option:selected').should('have.text', 'iPad Pro 11');
+        const deliveryMessage =
+        delivery === "Pick up"
+          ? "is ready to be picked up." //// dynamic get message what user select
+          : "will be delivered to you.";
 
-cy.get('#color_dropdown option:selected').should('contain.text', 'Select');
-cy.get('#color_dropdown').select('Green')
-cy.get('#color_dropdown option:selected').should('have.text', 'Green');
+      cy.get("#product_dropdown").select(product);
+      cy.get("#color_dropdown").select(color);
 
-cy.get('.react-dropdown-select-content').should('have.text', 'Select');
-cy.get('.react-dropdown-select-content').click()
-cy.get('[aria-label="Pick up"]').click()
-cy.get('.react-dropdown-select-content').should('have.text', 'Pick up');
+      cy.get("#shipment_dropdown").click();
+      cy.get(`span[aria-label="${delivery}"]`).click();
+      cy.get("#submit").click();
 
+      const expectedResult = `Your ${color} ${product} ${deliveryMessage}`;
 
-cy.get('#submit').click()
-cy.get("#result").should('have.text', 'Your Green iPad Pro 11 is ready to be picked up.')
+      cy.get("#result").should("have.text", expectedResult);
 
+      cy.on('uncaught:exception', () => {
+        return false
+      });
+    });
+  });
 
-
-    })
-  })
+})

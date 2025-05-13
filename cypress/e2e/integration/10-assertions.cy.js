@@ -15,7 +15,7 @@ describe('Cypress Assertion', () => {
   
     it('Default Assertions 2', () => {
       cy.get('button').contains('Mock Interviews')
-        //.should('be.enabled')
+        //.should('be.enabled')   /// clicable or not  click 
         .click();
   
       cy.url().should('eq', 'https://www.techglobal-training.com/login');
@@ -52,22 +52,63 @@ describe('Cypress Assertion', () => {
           expect(txt).eq('Testing');
           cy.log(txt);
         });
+
+        cy.get("#dropdown-testing")
+        .invoke("text")
+        .then((txt) => {
+          expect(txt).eq("Testing");
+          cy.log(txt);
+        });
+    });
       });
-    
-      it('Explicit Assertions with each()', () => {
+
+
+
+
+
+
+      it("Explicit Assertions with each() 1", () => {
         /*
         Hover over Exercises Nav Item
-        Validate below option are visible, clickable
+        Validate below option are visible, clickable, and make sure their text are correct
           Java Exercises
           JS Exercises
         */
-       cy.get('svg[aria-hidden="true"]').click()
+    
+        const expectedOptions = ["Java Exercises", "JS Exercises"];
+    
+        cy.get("#dropdown-exercises").realHover();
+    
+        cy.get('a[id*="j"]').should('have.length', 2).each((el, index) => {
+          // Explicit assertions
+          expect(el).to.be.visible;
+          expect(el.text()).eq(expectedOptions[index]);
+    
+          // Implicit assertions
+          cy.wrap(el).should('be.visible').and('have.text', expectedOptions[index]);
+        })
+    
+        // Primitive way
+        // cy.get("#java-option")
+        //   .should("be.visible")
+        //   // .and("be.enabled")
+        //   .and("have.text", "Java Exercises");
+    
+        // cy.get("#js-option")
+        //   .should("be.visible")
+        //   // .and("be.enabled")
+        //   .and("have.text", "JS Exercises");
+      });
+    
+      it('Explicit Assertions with each() 2', () => {
+        /*
+        Validate there 5 social media icons are visible in the footer
+        Validate all the links has "techglobal" in href attribute
+        Validate all the links has target attribute value is "_blank"
+        */
       });
     });
-
-    it("", () => {
-
-    })
+    
    
-    });
+
     

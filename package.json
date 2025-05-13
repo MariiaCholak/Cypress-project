@@ -12,6 +12,7 @@
   "devDependencies": {
     "@4tw/cypress-drag-drop": "^2.3.0",
     "cypress": "^14.3.2",
-    "cypress-real-events": "^1.14.0"
+    "cypress-real-events": "^1.14.0",
+    "dotenv": "^16.5.0"
   }
 }
