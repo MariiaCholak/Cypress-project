@@ -100,6 +100,7 @@ Validate that the button text is “SUBMIT”
     cy.get('#email').should('be.visible')
     cy.get('[for="email"]').should('be.visible')
     .and('have.text', `Enter your email address and we'll send you a link to reset your password. `)
+
     cy.get('#submit').should('be.visible')
     .and('have.text', 'SUBMIT')
     .and('be.enabled')

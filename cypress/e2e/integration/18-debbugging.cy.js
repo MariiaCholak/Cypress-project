@@ -1,33 +1,59 @@
-
 /// <reference types="cypress"/>
 
-describe("Timeouts", () => {
+describe("Debugging", () => {
   beforeEach(() => {
     cy.visit("https://www.techglobal-training.com/frontend");
     cy.clickCard("HTML Elements");
   });
 
-  it("Explicit and Inline Timeouts", () => {
-    cy.get("#main_heading", { timeout: 6000 });
+  it("cy.wait() - Hard wait", () => {
 
-    cy.get("#hello_paragraph", { timeout: 5000 }).click({ timeout: 10 * 1000 });
+    cy.get('#checkbox_1').check()
 
-    cy.get("#checkbox-button-group input").click({
-      multiple: true,
-      timeout: 5000,
-      force: true,
-      log: true,
-    });
+    // cy.wait(10000)
 
-    // npx cypress run --config defaultCommandTimeout=10000
+    cy.get('#checkbox_2').check()
   });
 
-  it("Waits", () => {
+  it("cy.pause() - Debugging using pause", () => {
+
     cy.visit(`${Cypress.env("SITE_URL")}/frontend`);
-    cy.clickCard("Waits");
+    cy.clickCard("Login Function");
 
-    cy.get("#red").click();
+    cy.get('#username').type(Cypress.env('UI_USERNAME'))
 
-    cy.get(".box", { timeout: 10000 }).should("be.visible");
+    // cy.pause()
+
+    cy.get('#password').type(Cypress.env('UI_PASSWORD'))
+
+    cy.get('#login_btn').click()
+
+    cy.get('#success_lgn').should('be.visible')
   });
+
+  it('cy.debug() - Debugging using debug', () => {
+    cy.visit(`${Cypress.env("SITE_URL")}/frontend`);
+    cy.clickCard("Login Function");
+
+    cy.get('#username').type(Cypress.env('UI_USERNAME'))
+
+    cy.get('#password').type(Cypress.env('UI_PASSWORD'))
+
+    cy.get('#login_btn').click()
+
+    cy.debug()
+
+    /**
+     * Sometimes, the pause button on the Sources tab may not work as expected.
+     * Instead, you can use the debugger command in JavaScript to trigger the pause whenever you need it.
+     * 
+     * @example
+     * 
+     * setTimeout(() => {
+     *  debugger
+     * }, 2000)
+     */
+
+    cy.get('#success_lgn').should('be.visible')
+  })
 });

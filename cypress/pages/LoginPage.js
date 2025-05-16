@@ -1,5 +1,8 @@
 
-class LoginPage {
+import BasePage from "./BasePage"
+
+
+class LoginPage extends BasePage {
 
   /* Locators */
   getUsernameField() {
