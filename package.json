@@ -5,18 +5,22 @@
   "scripts": {
     "test": "npx cypress run",
     "test:open": "npx cypress open",
-    "test:config": "npm t -- --browser chrome --config viewportHeight=720,viewportWidth=1080 --headed"
+    "test:config": "npm t -- --browser chrome --config viewportHeight=720,viewportWidth=1080 --headed",
+    "test:multiple": "npm t -- --env grepTags=\"@smoke|@table\",grepFilterSpecs=true",
+    "test:smoke": "npm t -- --env grepTags=@smoke,grepFilterSpecs=true"
+   
   },
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "@4tw/cypress-drag-drop": "^2.3.0",
-    "@cypress/grep": "^4.1.0",
     "cypress": "^14.3.2",
     "cypress-mochawesome-reporter": "^3.8.2",
     "cypress-real-events": "^1.14.0",
     "dotenv": "^16.5.0"
   }
 }
+
