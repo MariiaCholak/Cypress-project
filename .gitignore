@@ -7,3 +7,4 @@ dist/
 cypress/videos/*
 cypress/screenshots/*
 cypres/downloads/*
+.env

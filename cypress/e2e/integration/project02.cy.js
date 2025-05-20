@@ -29,13 +29,15 @@ Validate that the link text is “Forgot Password?”
         cy.get('.LoginForm_form__m12Jc').find('#username, #password').each((el, index) => {
             cy.wrap(el).should('be.visible')
             .and('not.have.attr', 'required')
+// what require means?  if you see an input box has an attribute it's called required it means that without passing a value inside of  this one you cannot move on
+/// it doesn't allowed you to do action, you need to provide inf.
 
             cy.wrap(el).prev().should('have.text', userMessage[index])
           })
           
-          const haveText = ['LOGIN', 'Forgot Password?']
+          const haveText = ['LOGIN', 'Forgot Password?']       // can i use 2 locators together?
        cy.get('#login_btn').parent().find('#login_btn, [href="/frontend/login"]').each((el, index) => {
-        cy.wrap(el).should('be.visible')
+        cy.wrap(el).should('be.visible')   //// expect?
         .and('have.text', haveText[index])
         
         if (el.attr('id') === 'login_btn'){
@@ -66,12 +68,12 @@ Validate that the login form is displayed
 
     it('Test Case 02 - Validate the valid login and Test Case 03 - Validate the logout', () => {
         const credential = ['TechGlobal', 'Test1234']
-        cy.get('#username, #password').each((el, index) => {
+        cy.get('#username, #password').each((el, index) => {     /// can i provide 2 elem?
             cy.wrap(el).clear().type(credential[index])
            }).then(() => {
               cy.get('#login_btn').click()
               cy.get('#success_lgn').should('be.visible')
-              .and('have.text', 'You are logged in')
+              .and('have.text', 'You are logged in')  /// by cheking this text we validate it's display 
               cy.get('#logout').should('be.visible')
                .and('have.text', 'LOGOUT').click()
               cy.get('.is-size-3').should('be.visible')
@@ -96,10 +98,16 @@ Validate that the button text is “SUBMIT”
     cy.get('[href="/frontend/login"]').click()
     cy.get('#modal_title').should('be.visible')
     .and('have.text', 'Reset Password')
-    cy.get('.delete').should('be.visible')
+    cy.get('.delete').should('be.visible')    ///('[aria-label="close"]')
     cy.get('#email').should('be.visible')
     cy.get('[for="email"]').should('be.visible')
     .and('have.text', `Enter your email address and we'll send you a link to reset your password. `)
+ //// out space issue in the text
+    cy.get('[for="email"]').then(($txt) => {
+      expect($txt.text().trim()).to.equal("Enter your email address and we'll send you a link to reset your password.");
+    });
+
+
 
     cy.get('#submit').should('be.visible')
     .and('have.text', 'SUBMIT')
@@ -169,8 +177,8 @@ Validate the failure message is displayed as “Invalid Username entered!” abo
 const testData = [
     {
     title: 'Test Case 07 - Validate the invalid login with the empty credentials',  
-    userName: '',
-    password: '',
+    userName: ' ',
+    password: ' ',
     message: 'Invalid Username entered!'
     },
 { 
@@ -199,8 +207,7 @@ testData.forEach(({title, userName, password, message})=> {
         cy.get('#username').clear().type(userName || " ")
              cy.get('#password').clear().type(password || " ")
             cy.get('#login_btn').click()
-
-                 cy.get('#error_message')
+            cy.get('#error_message')
            .should('be.visible')
             .and('have.text', message)
         })
